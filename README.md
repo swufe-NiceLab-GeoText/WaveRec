@@ -99,10 +99,5 @@ Key hyperparameters:
 If you find WaveRec useful in your research, please cite the following paper:
 
 ```
-@article{waverec2024,
-  title={WaveRec: Wavelet-Based Multi-Modal Fusion for Fine-Grained Urban Flow Inference},
-  author={ACM MM 2026 Submission},
-  booktitle={ACM MM},
-  year={2026}
-}
+
 ```
