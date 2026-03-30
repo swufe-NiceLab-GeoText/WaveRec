@@ -144,15 +144,6 @@ class IDWT2D(nn.Module):
 
 
 class ExternalContextEncoderV2(nn.Module):
-    """
-    改进版外部因素编码器 V2
-
-    核心改进：
-    1. 引入时间编码：捕获外部因素的时序依赖
-    2. 多粒度特征提取：捕获不同时间尺度的外部因素影响
-    3. 频域感知投影：将外部因素映射到与低频特征兼容的空间
-    """
-
     def __init__(self, ext_dim: int = 12, hidden_dim: int = 64, channels: int = 64):
         super(ExternalContextEncoderV2, self).__init__()
 
@@ -199,20 +190,7 @@ class ExternalContextEncoderV2(nn.Module):
 
 
 class DualStreamCrossAttention(nn.Module):
-    """
-    双流交叉协注意力机制 (Dual-Stream Cross-Co-Attention)
-
-    核心创新：
-    1. 双流交互：同时处理外部因素流和路网结构流
-    2. 交叉协注意力：外部因素和路网信息在高维空间中进行双向信息交互
-    3. 协同学习：两种模态相互增强，而非独立处理
-
-    理论依据：
-    - 交通流受外部因素（天气、时间）和路网结构的共同影响
-    - 例如：同样的天气在主干道和支路的影响不同
-    - 交叉注意力可以建模这种条件依赖关系
-    """
-
+  
     def __init__(self, channels: int, ext_dim: int = 64, num_heads: int = 4):
         super(DualStreamCrossAttention, self).__init__()
 
@@ -288,20 +266,7 @@ class DualStreamCrossAttention(nn.Module):
 
 
 class FrequencyAwareFusion(nn.Module):
-    """
-    频域感知融合模块
-
-    核心创新：
-    1. 频域残差连接：保留原始小波系数信息
-    2. 自适应频域权重：学习不同频率成分的重要性
-    3. 跨频带交互：低频和高频信息相互增强
-
-    理论依据：
-    - 小波分解后的频域信息包含丰富的多尺度特征
-    - 直接丢弃原始频域信息会损失重要细节
-    - 残差连接可以缓解这一问题，同时保持融合效果
-    """
-
+  
     def __init__(self, channels: int):
         super(FrequencyAwareFusion, self).__init__()
 
@@ -352,19 +317,7 @@ class FrequencyAwareFusion(nn.Module):
 
 
 class WaveletMultiModalFusionV8Pro(nn.Module):
-    """
-    V8 Pro 版本：小波多模态融合模块（改进版）
-
-    核心改进：
-    1. 双流交叉协注意力机制：外部因素和路网信息双向交互
-    2. 频域感知融合：保留原始频域信息，自适应学习频域权重
-    3. 协同增强：低频和高频信息相互影响
-
-    保留特性：
-    - 保留原始小波变换
-    - 保留分频处理机制
-    - 保留残差连接
-    """
+    
 
     def __init__(self, channels: int, ext_dim: int = 12, road_channels: int = 64,
                  num_heads: int = 4, dropout: float = 0.1, wave: str = 'haar'):
@@ -659,9 +612,7 @@ class Local_Global_Block(nn.Module):
 
 
 class LightweightFeatureExtractorV8Pro(nn.Module):
-    """
-    V8 Pro 版本特征提取器
-    """
+    
 
     def __init__(self, in_channels: int = 1, out_channels: int = 64, base_channels: int = 64,
                  num_blocks: int = 1, growth_rate: int = 32, num_layers: int = 4, num_scales: int = 4,
@@ -786,7 +737,7 @@ class SpatialMask(nn.Module):
 
     def forward(self, x):
         B, C, H, W = x.shape
-        assert H % self.patch_size == 0 and W % self.patch_size == 0, "The size must be patch_size divided evenly"
+        assert H % self.patch_size == 0 and W % self.patch_size == 0, "尺寸必须能被patch_size整除"
 
         x_patch = rearrange(x, 'b c (h p1) (w p2) -> b (h w) (p1 p2 c)', p1=self.patch_size, p2=self.patch_size)
 

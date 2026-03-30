@@ -307,7 +307,7 @@ class MaskedTrainer:
                 pred = model(c_map, exf, self.road_map)
                 pred = pred.cpu().detach().numpy() * args.scaler_Y
                 real = f_map.cpu().detach().numpy() * args.scaler_Y
-                # mse = F.mse_loss(pred, f_map * self.args.scaler_Y)
+
                 total_mse += get_RMSE(pred=pred, real=real) * len(c_map)
         return total_mse / len(dataloader.dataset)
 

@@ -166,7 +166,7 @@ class MaskedTrainer:
         roadmap = Image.open(roadmap_path).convert('L')
         roadmap = PIL.ImageOps.invert(roadmap)
         roadmap = np.expand_dims(cv2.resize(np.array(roadmap), (128, 128)), 0)
-        roadmap = np.expand_dims(roadmap, 1)  # 添加通道维度 (B, C, H, W)
+        roadmap = np.expand_dims(roadmap, 1)  
         return torch.FloatTensor(roadmap).to(device)
 
     def _get_task_dataloaders(self, task_id):

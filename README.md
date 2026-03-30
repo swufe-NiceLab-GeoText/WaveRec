@@ -3,7 +3,6 @@
 ## Overview
 
 
-
 Fine-grained urban flow inference (FUFI), which involves inferring fine-grained flow maps from their coarse-grained counterparts, is of tremendous interest in the realm of sustainable urban traffic services. WaveRec addresses this challenge by proposing a wavelet-based multi-modal fusion architecture that effectively combines spatial frequency decomposition with external contextual features and road network topology.
 
 The core innovation of WaveRec lies in its **WaveletMultiModalFusion** module, which:
@@ -11,6 +10,7 @@ The core innovation of WaveRec lies in its **WaveletMultiModalFusion** module, w
 - Captures both local fine-grained details and global coarse-grained semantics through separate processing streams
 - Leverages DualStreamCrossAttention to integrate external factors (time, weather, day-of-week) and road network information
 - Utilizes FrequencyAwareFusion to adaptively combine different frequency components
+
 
 
 ## Requirements
@@ -62,15 +62,11 @@ Pre-training with masked reconstruction:
 ```bash
 python train.py --pretrain_epochs 20 --batch_size 16 --dataset TaxiBJ
 ```
-
 Joint training:
-
 ```bash
 python train.py --joint_epochs 30 --batch_size 16 --dataset TaxiBJ
 ```
-
 Fine-tuning:
-
 ```bash
 python train.py --finetune_epochs 20 --batch_size 16 --dataset TaxiBJ
 ```
@@ -88,6 +84,4 @@ Key hyperparameters:
 
 If you find WaveRec useful in your research, please cite the following paper:
 
-```
 
-```
