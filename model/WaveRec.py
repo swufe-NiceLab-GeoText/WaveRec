@@ -737,7 +737,7 @@ class SpatialMask(nn.Module):
 
     def forward(self, x):
         B, C, H, W = x.shape
-        assert H % self.patch_size == 0 and W % self.patch_size == 0, "尺寸必须能被patch_size整除"
+        assert H % self.patch_size == 0 and W % self.patch_size == 0, "The size must be patch_size divided evenly"
 
         x_patch = rearrange(x, 'b c (h p1) (w p2) -> b (h w) (p1 p2 c)', p1=self.patch_size, p2=self.patch_size)
 
