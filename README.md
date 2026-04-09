@@ -39,20 +39,15 @@ Before running the code, ensure the package structure is as follows:
 │       └── P4
 ├── datasets/road_map/
 │   ├── TaxiBJ.png
-│   ├── ChengDu.png
-│   └── XiAn.png
 ├── experiments
 ├── model
 │   ├── WaveRec.py
-│   └── WaveRec_cd.py
 ├── model_train
 ├── utils_pack
 │   ├── args.py
-│   ├── args_cd.py
 │   ├── metrics.py
 │   └── utils.py
 ├── train.py
-└── train_cd.py
 ```
 
 ### Training
